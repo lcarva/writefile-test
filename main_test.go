@@ -7,8 +7,7 @@ import (
 )
 
 func TestHelloWorld(t *testing.T) {
-	td := t.TempDir()
-	f := filepath.Join(td, "test.txt")
+	f := filepath.Join(t.TempDir(), "test.txt")
 	if err := os.WriteFile(f, []byte("spam"), 0644); err != nil {
 		t.Fatal(err)
 	}
