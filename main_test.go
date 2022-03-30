@@ -25,14 +25,14 @@ func TestBasicWriteRead(t *testing.T) {
 	}
 }
 
-func TestRegoPolicy(t *testing.T) {
+func TestRegoPolicyLoad(t *testing.T) {
 	policy := `
-	package signature
+package signature
 
-	allow {
-		input.predicateType == "https://slsa.dev/provenance/v0.2"
-	}
-	`
+allow {
+	input.predicateType == "https://slsa.dev/provenance/v0.2"
+}
+`
 	jsonBody := []byte(`{
 		"_type": "https://in-toto.io/Statement/v0.1",
 		"predicateType": "https://slsa.dev/provenance/v0.2"
@@ -42,12 +42,10 @@ func TestRegoPolicy(t *testing.T) {
 		t.Fatal(err)
 	}
 	r := rego.New(rego.Query("data.signature.allow"), rego.Load([]string{policyFile}, nil))
-	if r == nil {
-		t.Fatal("Expected *rego.Rego, got nil")
-	}
 
 	ctx := context.Background()
 
+	// This fails on Windows Server 2022.
 	query, err := r.PrepareForEval(ctx)
 	if err != nil {
 		t.Fatal(err)
@@ -68,5 +66,37 @@ func TestRegoPolicy(t *testing.T) {
 	if !rs.Allowed() {
 		t.Fatal("Not allowed")
 	}
+}
 
+func TestRegoPolicyRelativeLoad(t *testing.T) {
+	jsonBody := []byte(`{
+		"_type": "https://in-toto.io/Statement/v0.1",
+		"predicateType": "https://slsa.dev/provenance/v0.2"
+	}`)
+	policyFile := "test/testdata/policy.rego"
+	r := rego.New(rego.Query("data.signature.allow"), rego.Load([]string{policyFile}, nil))
+
+	ctx := context.Background()
+
+	// This fails on Windows Server 2022.
+	query, err := r.PrepareForEval(ctx)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var input interface{}
+	dec := json.NewDecoder(bytes.NewBuffer(jsonBody))
+	dec.UseNumber()
+	if err := dec.Decode(&input); err != nil {
+		t.Fatal(err)
+	}
+
+	rs, err := query.Eval(ctx, rego.EvalInput(input))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if !rs.Allowed() {
+		t.Fatal("Not allowed")
+	}
 }
