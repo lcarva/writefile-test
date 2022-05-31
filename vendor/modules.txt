@@ -1,5 +1,7 @@
 # github.com/OneOfOne/xxhash v1.2.8
 github.com/OneOfOne/xxhash
+# github.com/bytecodealliance/wasmtime-go v0.36.0
+## explicit
 # github.com/ghodss/yaml v1.0.0
 github.com/ghodss/yaml
 # github.com/gobwas/glob v0.2.3
@@ -11,13 +13,18 @@ github.com/gobwas/glob/syntax/ast
 github.com/gobwas/glob/syntax/lexer
 github.com/gobwas/glob/util/runes
 github.com/gobwas/glob/util/strings
-# github.com/open-policy-agent/opa v0.38.1
+# github.com/google/flatbuffers v2.0.6+incompatible
+## explicit
+# github.com/klauspost/compress v1.15.5
+## explicit
+# github.com/open-policy-agent/opa v0.40.0
 ## explicit
 github.com/open-policy-agent/opa/ast
 github.com/open-policy-agent/opa/ast/internal/scanner
 github.com/open-policy-agent/opa/ast/internal/tokens
 github.com/open-policy-agent/opa/ast/location
 github.com/open-policy-agent/opa/bundle
+github.com/open-policy-agent/opa/capabilities
 github.com/open-policy-agent/opa/format
 github.com/open-policy-agent/opa/internal/bundle
 github.com/open-policy-agent/opa/internal/cidr/merge
@@ -76,13 +83,20 @@ github.com/open-policy-agent/opa/util
 github.com/open-policy-agent/opa/version
 # github.com/pkg/errors v0.9.1
 github.com/pkg/errors
-# github.com/rcrowley/go-metrics v0.0.0-20200313005456-10cdbea86bc0
+# github.com/prometheus/client_golang v1.12.2
+## explicit
+# github.com/prometheus/common v0.34.0
+## explicit
+# github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475
+## explicit
 github.com/rcrowley/go-metrics
 # github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb
 github.com/xeipuuv/gojsonpointer
 # github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415
 github.com/xeipuuv/gojsonreference
-# github.com/yashtewari/glob-intersection v0.0.0-20180916065949-5c77d914dd0b
+# github.com/yashtewari/glob-intersection v0.1.0
 github.com/yashtewari/glob-intersection
+# golang.org/x/net v0.0.0-20220526153639-5463443f8c37
+## explicit
 # gopkg.in/yaml.v2 v2.4.0
 gopkg.in/yaml.v2
